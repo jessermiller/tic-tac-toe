@@ -20,7 +20,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -80,4 +80,12 @@ button:hover {
 
 button:active {
     background-color: rgb(101, 105, 50);
+}
+
+#winningMessage {
+    font-family: brush script mt, cursive;
+    font-size: 65px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }

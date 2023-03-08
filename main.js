@@ -1,18 +1,40 @@
-const playerX = 'x';
-const playerO = 'o';
+"use strict";
 
-const winningVariations = [
-    [0, 1, 2],
-    [3, 4, 5], 
-    [6, 7, 8],
-    [0, 3, 6], 
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-];
-
+import gameBoard from "./gamesBoard.js";
+import { winGmMsgO, winGmMsgX, drawMsg, currentTurnMsg } from "./displayController.js";
 const board = document.getElementById('board');
 const tableCells = document.querySelectorAll('[data-cell]');
 const restartBtn = document.getElementById('restartBtn');
 const winningMessage = document.getElementById('winningMessage');
+let playing = false;
+
+
+startGame();
+function startGame() {
+    console.log("ok it works");
+    tableCells.forEach(cell => cell.addEventListener('click', tableCellClick));
+    restartBtn.addEventListener('click', startGame);
+   winningMessage.textContent = currentTurnMsg;
+
+    
+}
+
+function tableCellClick() {
+console.log("hlr hur hur");
+}
+
+function updateCell(cell, id){
+
+}
+
+function updatePlayer() {
+
+}
+
+function checkWinner() {
+
+}
+
+function restartGame() {
+
+}
