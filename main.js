@@ -14,12 +14,8 @@ const winningMessage = document.getElementById('winningMessage');
 const gameFlow = {
     currentPlayer: 'X',
     players: ['X', 'O'],
-    gmeBoardState: ["", "", "", "", "", "", "", "", ""],
-
-}
-
-
-const winningVariations = [
+    gmeBoardState: [],
+    winningVariations: [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -28,12 +24,16 @@ const winningVariations = [
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-]
+  ]
+}
 
 
 
 
- startGame();
+
+
+
+startGame();
 
 function startGame() {
     console.log("Game Initialized");
@@ -48,48 +48,56 @@ function startGame() {
         const cell = event.currentTarget;
         console.log(`this is a ${cell}`);
         const currentTurn = gameFlow.currentPlayer;
-        updateCell(cell, currentTurn)
+        updateCell(cell, currentTurn, cellId);
         checkWinner;
-        console.log(cellId);
         console.log(`current turn ${currentTurn}, current player ${gameFlow.currentPlayer}`)
 
     }
 
-    function updateCell(cell, currentTurn) {
+    function updateCell(cell, currentTurn, cellId) {
         cell.textContent = currentTurn;
+        let playerVal = cellId;
         if (gameFlow.currentPlayer == 'X') {
             gameFlow.currentPlayer = 'O';
 
+
         } else {
             gameFlow.currentPlayer = 'X';
+
         }
         let currentTurnMsg = `${gameFlow.currentPlayer}'s turn.`;
         winningMessage.textContent = currentTurnMsg;
+        updatePlayer(currentTurn, playerVal);
+
     }
 
-    // updatePlayer;
+
+    function updatePlayer(currentTurn, playerVal) {
+        let newPlayerVal = currentTurn + playerVal;
+        console.log(`playerVal ${newPlayerVal}`);
+        gameFlow.gmeBoardState.push(newPlayerVal);
+        console.log(gameFlow.gmeBoardState);
+    }
+
+    function checkWinner() {
+
+
+
+        let winGmMsgX = `${playerX} has won the game.`;
+        let winGmMsgO = `${playerO} has won the game.`;
+        let drawMsg = `A draw.`;
+
+
+
+    }
+
+    function restartGame() {
+        tableCells.forEach(cell => cell.textContent = "");
+        winningMessage.textContent = "X's Turn.";
+        gameFlow.currentPlayer = 'X';
+        startGame();
+
+    }
+
+
 };
-
-function updatePlayer() {
-   
-}
-
-function checkWinner() {
-
-
-
-    let winGmMsgX = `${playerX} has won the game.`;
-    let winGmMsgO = `${playerO} has won the game.`;
-    let drawMsg = `A draw.`;
-
-
-
-}
-
-function restartGame() {
-    tableCells.forEach(cell => cell.textContent = "");
-    winningMessage.textContent = "X's Turn.";
-    gameFlow.currentPlayer = 'X';
-    startGame();
-
-}
