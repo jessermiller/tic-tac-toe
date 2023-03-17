@@ -14,7 +14,8 @@ const winningMessage = document.getElementById('winningMessage');
 const gameFlow = {
     currentPlayer: 'X',
     players: ['X', 'O'],
-    gmeBoardState: [],
+    gmeBoardStateX: [],
+    gmeBoardStateO: [],
     winningVariationsX: [
     ["X0", "X1", "X2"],
     ["X3", "X4", "X5"],
@@ -37,17 +38,6 @@ const gameFlow = {
     ]
 }
 
-//winningVariations: [
-   // [0, 1, 2],
-   // [3, 4, 5],
-   // [6, 7, 8],
-   // [0, 3, 6],
-   // [1, 4, 7],
-   // [2, 5, 8],
-   // [0, 4, 8],
-   // [2, 4, 6],
-  //]
-
 
 
 
@@ -62,13 +52,13 @@ function startGame() {
     restartBtn.addEventListener('click', restartGame);
 
     function tableCellClick(event) {
-        // tell it when clicked use function update player to change current player as well as change chars. tell it to run update cell aswell and chceck winner
+        
         const cellId = this.getAttribute("id");
         const cell = event.currentTarget;
         console.log(`this is a ${cell}`);
         const currentTurn = gameFlow.currentPlayer;
         updateCell(cell, currentTurn, cellId);
-        checkWinner;
+        checkWinner(gameFlow.gmeBoardState, gameFlow.winningVariationsO, gameFlow.winningVariationsX, currentTurn);
         console.log(`current turn ${currentTurn}, current player ${gameFlow.currentPlayer}`)
 
     }
@@ -94,16 +84,37 @@ function startGame() {
     function updatePlayer(currentTurn, playerVal) {
         let newPlayerVal = currentTurn + playerVal;
         console.log(`playerVal ${newPlayerVal}`);
-        gameFlow.gmeBoardState.push(newPlayerVal);
-        console.log(gameFlow.gmeBoardState);
+        
+        for (let i = 0; i > gameFlow.gmeBoardStateX.length; i += 2){
+            gameFlow.gmeBoardStateX.push(newPlayerVal[i]);
+        }
+        console.log(gameFlow.gmeBoardStateX);
+        
     }
 
-    function checkWinner() {
+    function checkWinner(gmeBoardState, winningVariationsO, winningVariationsX, currentTurn) {
+       // if (gmeBoardState == winningVariationsX || winningVariationsO ) {
+        //    console.log("someones winning");
+       // } else {
+        //    console.log("nobody equals");
+      //  }
+    //   console.log("checking winner...")
+    //   let correct = 0;
+
+    //   gameFlow.gmeBoardState.for(( index) => {
+    //     if(gameFlow.gmeBoardState == winningVariationsO[index]){
+    //         correct++;
+    //         console.log(correct);
+    //     } else if (gameFlow.gmeBoardState != winningVariationsX[index] ) {
+    //         console.log(gameFlow.gmeBoardState , winningVariationsO[index])
+    //     }
+
+    //   })
 
 
 
-        let winGmMsgX = `${playerX} has won the game.`;
-        let winGmMsgO = `${playerO} has won the game.`;
+        let winGmMsg = `${currentTurn} has won the game.`;
+        
         let drawMsg = `A draw.`;
 
 
@@ -120,3 +131,5 @@ function startGame() {
 
 
 };
+
+// method for compare use for each to itterate through win variations and compare to index of gmebrdstate
