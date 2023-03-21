@@ -46,9 +46,17 @@ startGame();
 
 function startGame() {
     console.log("Game Initialized");
-    tableCells.forEach(cell => cell.addEventListener('click', tableCellClick, {
+    tableCells.forEach(cell => cell.addEventListener('click', tableCellClick,  {
         once: true
+
     }));
+
+    gameFlow.gmeBoardStateX.forEach(cell => () => {
+            
+                
+            
+    });
+
     restartBtn.addEventListener('click', restartGame);
 
     function tableCellClick(event) {
@@ -57,8 +65,9 @@ function startGame() {
         const cell = event.currentTarget;
         console.log(`this is a ${cell}`);
         const currentTurn = gameFlow.currentPlayer;
+        
         updateCell(cell, currentTurn, cellId);
-        checkWinner(gameFlow.gmeBoardState, gameFlow.winningVariationsO, gameFlow.winningVariationsX, currentTurn);
+        
         console.log(`current turn ${currentTurn}, current player ${gameFlow.currentPlayer}`)
 
     }
@@ -84,12 +93,19 @@ function startGame() {
     function updatePlayer(currentTurn, playerVal) {
         let newPlayerVal = currentTurn + playerVal;
         console.log(`playerVal ${newPlayerVal}`);
-        
-        for (let i = 0; i > gameFlow.gmeBoardStateX.length; i += 2){
-            gameFlow.gmeBoardStateX.push(newPlayerVal[i]);
-        }
+       
+
+       if (currentTurn === gameFlow.players[0] ) {
+        gameFlow.gmeBoardStateX.push(newPlayerVal);
         console.log(gameFlow.gmeBoardStateX);
+       } else {
+        gameFlow.gmeBoardStateO.push(newPlayerVal);
+        console.log(gameFlow.gmeBoardStateO);
+       }
+
+        console.log(gameFlow.gmeBoardStateX, gameFlow.gmeBoardStateO)
         
+       // checkWinner(gameFlow.gmeBoardStateX, gameFlow.gmeBoardStateO ,gameFlow.winningVariationsO, gameFlow.winningVariationsX, currentTurn);
     }
 
     function checkWinner(gmeBoardState, winningVariationsO, winningVariationsX, currentTurn) {
