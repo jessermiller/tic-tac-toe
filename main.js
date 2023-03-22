@@ -95,7 +95,7 @@ function startGame() {
         console.log(`playerVal ${newPlayerVal}`);
        
 
-       if (currentTurn === gameFlow.players[0] ) {
+       if (currentTurn === gameFlow.players[0]) {
         gameFlow.gmeBoardStateX.push(newPlayerVal);
         console.log(gameFlow.gmeBoardStateX);
        } else {
@@ -104,29 +104,20 @@ function startGame() {
        }
 
         console.log(gameFlow.gmeBoardStateX, gameFlow.gmeBoardStateO)
-        
-       // checkWinner(gameFlow.gmeBoardStateX, gameFlow.gmeBoardStateO ,gameFlow.winningVariationsO, gameFlow.winningVariationsX, currentTurn);
+        checkWinner(currentTurn);
     }
 
-    function checkWinner(gmeBoardState, winningVariationsO, winningVariationsX, currentTurn) {
-       // if (gmeBoardState == winningVariationsX || winningVariationsO ) {
-        //    console.log("someones winning");
-       // } else {
-        //    console.log("nobody equals");
-      //  }
-    //   console.log("checking winner...")
-    //   let correct = 0;
-
-    //   gameFlow.gmeBoardState.for(( index) => {
-    //     if(gameFlow.gmeBoardState == winningVariationsO[index]){
-    //         correct++;
-    //         console.log(correct);
-    //     } else if (gameFlow.gmeBoardState != winningVariationsX[index] ) {
-    //         console.log(gameFlow.gmeBoardState , winningVariationsO[index])
-    //     }
-
-    //   })
-
+    function checkWinner(currentTurn) {
+      
+        
+       if(currentTurn === gameFlow.players[0]) {
+        for (let i = 0; i < gameFlow.winningVariationsX.length; i++){
+            for (let j = 0; j < gameFlow.gmeBoardStateX.length; j++){
+                 console.log(gameFlow.gmeBoardStateX[j])
+            }
+        }
+       }
+        
 
 
         let winGmMsg = `${currentTurn} has won the game.`;
