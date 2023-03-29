@@ -46,6 +46,7 @@ startGame();
 
 function startGame() {
     console.log("Game Initialized");
+    gameFlow.currentPlayer = 'X';
     tableCells.forEach(cell => cell.addEventListener('click', tableCellClick,  {
         once: true
 
@@ -112,8 +113,13 @@ function startGame() {
         
        if(currentTurn === gameFlow.players[0]) {
         for (let i = 0; i < gameFlow.winningVariationsX.length; i++){
+            console.log(gameFlow.winningVariationsX[i]);
             for (let j = 0; j < gameFlow.gmeBoardStateX.length; j++){
-                 console.log(gameFlow.gmeBoardStateX[j])
+                console.log(gameFlow.gmeBoardStateX[j]);
+            if (gameFlow.winningVariationsX[i] == gameFlow.gmeBoardStateX[i][j]) {
+                console.log("winning match");
+
+            }
             }
         }
        }
