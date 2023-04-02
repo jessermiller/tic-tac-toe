@@ -86,12 +86,12 @@ function startGame() {
         }
         let currentTurnMsg = `${gameFlow.currentPlayer}'s turn.`;
         winningMessage.textContent = currentTurnMsg;
-        updatePlayer(currentTurn, playerVal);
+        updatePlayer(currentTurn, playerVal, cellId);
 
     }
 
 
-    function updatePlayer(currentTurn, playerVal) {
+    function updatePlayer(currentTurn, playerVal, cellId) {
         let newPlayerVal = currentTurn + playerVal;
         console.log(`playerVal ${newPlayerVal}`);
        
@@ -105,10 +105,10 @@ function startGame() {
        }
 
         console.log(gameFlow.gmeBoardStateX, gameFlow.gmeBoardStateO)
-        checkWinner(currentTurn);
+        checkWinner(currentTurn, cellId);
     }
 
-    function checkWinner(currentTurn) {
+    function checkWinner(currentTurn, cellId) {
       
         
        if(currentTurn === gameFlow.players[0]) {
@@ -116,9 +116,14 @@ function startGame() {
             console.log(gameFlow.winningVariationsX[i]);
             for (let j = 0; j < gameFlow.gmeBoardStateX.length; j++){
                 console.log(gameFlow.gmeBoardStateX[j]);
-            if (gameFlow.winningVariationsX[i] == gameFlow.gmeBoardStateX[i][j]) {
-                console.log("winning match");
-
+           for (cellId of gameFlow.gmeBoardStateX[j]) {
+             let score = 0;
+             let newCellId = 'X' + cellId;
+            if (newCellId[j] == gameFlow.winningVariationsX[i]){
+                score++
+                console.log(`Score count = ${score}`);
+                
+            }
             }
             }
         }
