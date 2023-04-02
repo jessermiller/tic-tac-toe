@@ -116,18 +116,27 @@ function startGame() {
             console.log(gameFlow.winningVariationsX[i]);
             for (let j = 0; j < gameFlow.gmeBoardStateX.length; j++){
                 console.log(gameFlow.gmeBoardStateX[j]);
-           for (cellId of gameFlow.gmeBoardStateX[j]) {
-             let score = 0;
-             let newCellId = 'X' + cellId;
-            if (newCellId[j] == gameFlow.winningVariationsX[i]){
-                score++
-                console.log(`Score count = ${score}`);
-                
-            }
-            }
+                let winningNums = gameFlow.winningVariationsX[i].filter((winNum) => gameFlow.gmeBoardStateX.includes(winNum));
+                console.log(winningNums);
+                if (winningNums.length === 3 ) {
+                    console.log("X WINS!!!!S")
+                }
             }
         }
-       }
+       } else if (currentTurn === gameFlow.players[1]) {
+        for (let i = 0; i < gameFlow.winningVariationsO.length; i++){
+            console.log(gameFlow.winningVariationsO[i]);
+            for (let j = 0; j < gameFlow.gmeBoardStateO.length; j++){
+                console.log(gameFlow.gmeBoardStateO[j]);
+                let winningNumsO = gameFlow.winningVariationsO[i].filter((winNumO) => gameFlow.gmeBoardStateO.includes(winNumO));
+                console.log(winningNumsO);
+                if (winningNumsO.length === 3 ) {
+                    console.log("O WINS!!!!S")
+
+                }
+            }
+       } 
+    }
         
 
 
