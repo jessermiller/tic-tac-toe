@@ -24,8 +24,8 @@ body {
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(3, auto);
-    border-top: 25px solid rgb(12, 12, 12);
-    background-color: rgb(83, 87, 32);
+    /*border-top: 25px solid rgb(12, 12, 12);
+    background-color: rgb(83, 87, 32); */
     font-size: 50px;
     font-family: brush script mt, cursive;
 }
@@ -65,7 +65,7 @@ body {
     border-right: none;
 }
 
-button {
+/*button {
     font-family: brush script mt, cursive;
     font-weight: 500;
     width: 200px;
@@ -78,7 +78,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 button:hover {
     background-color: rgb(63, 66, 27);
