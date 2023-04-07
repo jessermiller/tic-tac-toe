@@ -5,7 +5,8 @@ const board = document.getElementById('board');
 const tableCells = document.querySelectorAll('[data-cell]');
 const restartBtn = document.getElementById('restartBtn');
 const winningMessage = document.getElementById('winningMessage');
-
+const playerOne = document.getElementById('playerOne');
+const playerTwo = document.getElementById('playerTwo');
 
 
 
@@ -41,7 +42,7 @@ const gameFlow = {
 }
 let firstrun = true
 
-
+  
 
 
 // startGame();
@@ -66,11 +67,11 @@ let firstrun = true
 
     });
 
-    //restartBtn.addEventListener('click', restartGame);
+    
 
     function tableCellClick(event) {
 
-        // const cellId = this.getAttribute("id");
+        
         const cellId = event.currentTarget.id;
 
         const cell = event.currentTarget;
@@ -88,16 +89,17 @@ let firstrun = true
         console.log('---YO there current turn is :',currentTurn)
         cell.textContent = currentTurn;
         let playerVal = cellId;
+    
         if (gameFlow.currentPlayer == 'X') {
             gameFlow.currentPlayer = 'O';
 
-
         } else {
             gameFlow.currentPlayer = 'X';
-
         }
-        let currentTurnMsg = `${gameFlow.currentPlayer}'s turn.`;
-        winningMessage.textContent = currentTurnMsg;
+            let currentTurnMsg = `${gameFlow.currentPlayer}'s turn.`;
+            winningMessage.textContent = currentTurnMsg;
+        
+        
         updatePlayer(currentTurn, playerVal, cellId);
 
     }
@@ -132,21 +134,16 @@ let firstrun = true
                     // console.log(gameFlow.gmeBoardStateX[j]);
                     gameFlow.winningNums = gameFlow.winningVariationsX[i].filter((winNum) => gameFlow.gmeBoardStateX.includes(winNum));
                     // console.log(gameFlow.winningNums);
-                    if (gameFlow.winningNums.length === 3) {
+                    if (gameFlow.winningNums.length === 3 && playerOne.value.length != 0) {
+                        console.log("X WINS!!!!S")
+                        let winGmMsg = `${playerOne.value} has won the game.`;
+                        winningMessage.textContent = winGmMsg;
+                        somebodywon =true
+                    }else if (gameFlow.winningNums.length === 3){
                         console.log("X WINS!!!!S")
                         let winGmMsg = `${currentTurn} has won the game.`;
                         winningMessage.textContent = winGmMsg;
-                        // setTimeout(function(){
-                        //     restartGame();
-                        // }, 2300);
                         somebodywon =true
-
-                        //    function showModulXwins(){
-                        //     modal.showModul()
-
-                        //    };
-                        //    showModulXwins();
-                        //    setTimeout( showModulXwins,3000);
                     }
                 }
             }
@@ -157,17 +154,18 @@ let firstrun = true
                     // console.log(gameFlow.gmeBoardStateO[j]);
                     gameFlow.winningNumsO = gameFlow.winningVariationsO[i].filter((winNumO) => gameFlow.gmeBoardStateO.includes(winNumO));
                     // console.log(gameFlow.winningNumsO);
-                    if (gameFlow.winningNumsO.length === 3) {
+                    if (gameFlow.winningNumsO.length === 3 && playerTwo.value.length != 0) {
+                        console.log("O WINS!!!!S")
+                        let winGmMsg = `${playerTwo.value} has won the game.`;
+                        winningMessage.textContent = winGmMsg;
+                        somebodywon=true
+                    } else if(gameFlow.winningNumsO.length === 3){
                         console.log("O WINS!!!!S")
                         let winGmMsg = `${currentTurn} has won the game.`;
                         winningMessage.textContent = winGmMsg;
-                        // setTimeout(function(){
-                        //     restartGame();
-                        // }, 2300);
+                        
                         somebodywon=true
-
-
-                    } 
+                    }
 
                     }
                 }
@@ -177,13 +175,9 @@ let firstrun = true
             // console.log("##################################checking TIE???")
                 if(gameFlow.gmeBoardStateO.length == 5 || gameFlow.gmeBoardStateX.length == 5 ){
                     if(gameFlow.gmeBoardStateO.length == 4 || gameFlow.gmeBoardStateX.length == 4 ){
-                        let drawMsg = `Nobody wins today!`;
+                        let drawMsg =  `Nobody wins today!`;
                         winningMessage.textContent = drawMsg;
                         somebodywon=true
-                        // setTimeout(function(){
-                        //     restartGame();
-                        // }, 2300);
-
                     }
                     // console.log("##################################MAYBE TIE???")
 
@@ -192,7 +186,7 @@ let firstrun = true
         if(somebodywon){
             setTimeout(function(){
                 restartGame();
-            }, 2300);
+            }, 1100);
         }
 
     }
@@ -200,6 +194,8 @@ let firstrun = true
     function restartGame() {
         tableCells.forEach(cell => cell.textContent = "");
         winningMessage.textContent = "X's Turn.";
+        playerOne.value = "";
+        playerTwo.value = "";
         gameFlow.currentPlayer = 'X';
         gameFlow.gmeBoardStateO = [];
         gameFlow.gmeBoardStateX = [];
@@ -208,10 +204,9 @@ let firstrun = true
         gameFlow.winningVariationsO = gameFlow.winningVariationsO;
         gameFlow.winningVariationsX = gameFlow.winningVariationsX;
         console.log('----reseting game')
-        // startGame();
+       
         console.log(gameFlow.gmeBoardStateO, gameFlow.gmeBoardStateX)
 
     }
 
 
-// };

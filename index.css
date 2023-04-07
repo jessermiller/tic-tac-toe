@@ -13,6 +13,32 @@ body {
 
 }
 
+form {
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+label {
+    padding-left: 5px;
+}
+
+input {
+    font-size: 18px;
+    font-weight: 520;
+}
+
+#playerOne {
+    margin-left: 12px;
+}
+
+#playerTwo {
+    margin-left: 12px;
+
+}
+
 .board {
     margin: 0;
     padding: 0;
